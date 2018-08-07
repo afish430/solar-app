@@ -10,7 +10,7 @@ export class Header extends React.Component {
                     <img src={sun} className="App-logo" alt="logo" />
                 </div>
                 <div className="col-9">
-                    <h1 className="App-title">Title of App</h1>
+                    <h1 className="App-title">Solar Forecasting</h1>
                 </div>
           </header>
         );

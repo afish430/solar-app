@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-// import { Component1 } from './components/component1';
+import {
+  BrowserRouter as Router,
+  Route,
+  NavLink
+} from 'react-router-dom'
+
+import { Home } from './components/home';
 import { RadiationForm } from './components/radiation-form';
+import { PvForm } from './components/pv-form';
 import { Header } from './components/header';
 import './App.css';
 
@@ -51,30 +58,35 @@ class App extends Component {
   render() {
     return (
       <div className="App container-fluid">
+
         <Header/>
-        <div className="row">
-          <div className="col-12">
-            <p className="App-intro">
-              App intro will go here
-            </p>
-          </div>
-        </div>
 
-        {/* <div className="row">
-          <div className="col-12">
-            <Component1/>
-          </div>
-        </div> */}
+        <Router>
+          <div>
 
-        <div className="row">
-          <div className="col-12">
-            <RadiationForm 
-              submitFunction={this.getRadiation}
-              forecasts={this.state.forecasts}
-              error={this.state.error}
-              waiting={this.state.waiting}/>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+              <ul className="navbar-nav">
+                <li className="nav-item"><NavLink className="nav-link" exact to="/">Home</NavLink></li>
+                <li className="nav-item"><NavLink className="nav-link" to="/radiation">Radiation</NavLink></li>
+                <li className="nav-item"><NavLink className="nav-link" to="/pv">PV Power</NavLink></li>
+              </ul>
+            </nav>
+
+            <hr/>
+
+            <Route exact path="/" component={Home}/>
+            <Route
+              path="/radiation"
+                render={(props) => <RadiationForm {...props} 
+                  submitFunction={this.getRadiation}
+                  forecasts={this.state.forecasts}
+                  error={this.state.error}
+                  waiting={this.state.waiting}
+                  />}
+            />
+            <Route path="/pv" component={PvForm}/>
           </div>
-        </div>
+        </Router>
 
       </div>
     );
