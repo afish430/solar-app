@@ -5,12 +5,14 @@ import sun from '../animated-sun.gif';
 export class Header extends React.Component {
     render() {
         return (
-            <header className="App-header row">
+            <header className="app-header row">
                 <div className="col-1">
-                    <img src={sun} className="App-logo" alt="logo" />
+                    <img src={sun} className="app-logo" alt="logo" />
                 </div>
                 <div className="col-9">
-                    <h1 className="App-title">Solar Forecasting</h1>
+                    <h1 className="app-title">
+                        <em>SolCastr</em>
+                    </h1>
                 </div>
           </header>
         );

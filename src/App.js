@@ -12,24 +12,57 @@ import { Header } from './components/header';
 import './App.css';
 
 const API_KEY = 'w2iJNg2Ag0204Qk0Tw9dXWONDeziH2zM';
-const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 const BASE_URL = 'https://api.solcast.com.au';
 
 class App extends Component {
 
   state = {
-    forecasts: [],
-    waiting: false,
-    error: ''
+    radiation: {
+      forecasts: [],
+      waiting: false,
+      error: ''
+    },
+    pv: {
+      forecasts: [],
+      waiting: false,
+      error: ''
+    }
+  }
+
+  clearRadiation = (e) => {
+    e.preventDefault();
+    document.getElementById('radiation-form').reset();
+    this.setState({
+      radiation: {
+        forecasts: [],
+        waiting: false,
+        error: ''
+      }
+    });
+  }
+
+  clearPv = (e) => {
+    e.preventDefault();
+    document.getElementById('pv-form').reset();
+    this.setState({
+      pv: {
+        forecasts: [],
+        waiting: false,
+        error: ''
+      }
+    });
   }
 
   getRadiation = async (e) => {
       e.preventDefault();
 
       this.setState({
-        forecasts: [],
-        waiting: true,
-        error: ''
+        radiation: {
+          forecasts: [],
+          waiting: true,
+          error: ''
+        }
       });
 
       const lat = e.target.elements.latitude.value;
@@ -41,28 +74,69 @@ class App extends Component {
         console.log(data);
   
         this.setState({
+          radiation: {
             forecasts: data.forecasts,
             waiting: false,
             error: ''
+          }
         });
       } else {
         this.setState({
-          forecasts: [],
-          waiting: false,
-          error: 'You must enter both latitude and longitude'
+          radiation: {
+            forecasts: [],
+            waiting: false,
+            error: 'You must enter both latitude and longitude'
+          }
         });
       }
-
   }
+
+  getPvPower = async (e) => {
+    e.preventDefault();
+
+    this.setState({
+      pv: {
+        forecasts: [],
+        waiting: true,
+        error: ''
+      }
+    });
+
+    const lat = e.target.elements.latitude.value;
+    const long = e.target.elements.longitude.value;
+    const capacity = e.target.elements.capacity.value;
+
+    if (lat && long && capacity) {
+      const api_call = await fetch(`${PROXY_URL}${BASE_URL}/Pv_power/forecasts?longitude=${long}&latitude=${lat}&capacity=${capacity}&api_key=${API_KEY}&format=json`);
+      const data = await api_call.json();
+      console.log(data);
+
+      this.setState({
+        pv: {
+          forecasts: data.forecasts,
+          waiting: false,
+          error: ''
+        }
+      });
+    } else {
+      this.setState({
+        pv: {
+          forecasts: [],
+          waiting: false,
+          error: 'You must enter latitude, longitude and capacity'
+        }
+      });
+    }
+}
 
   render() {
     return (
-      <div className="App container-fluid">
+      <div className="App">
 
         <Header/>
 
         <Router>
-          <div>
+          <div className="solcastr-container">
 
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
               <ul className="navbar-nav">
@@ -79,12 +153,22 @@ class App extends Component {
               path="/radiation"
                 render={(props) => <RadiationForm {...props} 
                   submitFunction={this.getRadiation}
-                  forecasts={this.state.forecasts}
-                  error={this.state.error}
-                  waiting={this.state.waiting}
+                  clearFunction={this.clearRadiation}
+                  forecasts={this.state.radiation.forecasts}
+                  error={this.state.radiation.error}
+                  waiting={this.state.radiation.waiting}
                   />}
             />
-            <Route path="/pv" component={PvForm}/>
+            <Route
+              path="/pv"
+                render={(props) => <PvForm {...props} 
+                  submitFunction={this.getPvPower}
+                  clearFunction={this.clearPv}
+                  forecasts={this.state.pv.forecasts}
+                  error={this.state.pv.error}
+                  waiting={this.state.pv.waiting}
+                  />}
+            />
           </div>
         </Router>
 

@@ -1,4 +1,9 @@
-div.home {
-    color: #ff3377;
-    font-weight: bold;
+
+a {
+    color: #FFFF99;
+}
+
+a:hover {
+    color: yellow;
+    text-decoration: none;
 }

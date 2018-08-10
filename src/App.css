@@ -1,6 +1,7 @@
+.solcastr-container>nav {
+    background-color: #FFFF99 !important;
+}
 
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.solcastr-container>nav a.active {
+    font-weight: bold !important;
 }
