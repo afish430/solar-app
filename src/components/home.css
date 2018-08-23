@@ -7,3 +7,7 @@ a:hover {
     color: yellow;
     text-decoration: none;
 }
+
+.col-6 img {
+    width: 90%;
+}

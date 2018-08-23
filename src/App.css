@@ -1,7 +1,49 @@
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .solcastr-container>nav {
     background-color: #FFFF99 !important;
 }
 
+.solcastr-container>nav a {
+    color: black !important;
+}
+
+.solcastr-container>nav a:hover {
+    background-color: yellow !important;
+}
+
 .solcastr-container>nav a.active {
     font-weight: bold !important;
+}
+
+.btn-primary {
+    background-color:#FFFF99;
+    color: black;
+}
+
+.btn-primary:hover {
+    background-color:yellow;
+    color: black;
+}
+
+.loading {
+    animation-name: sunny2;
+    animation-duration: 2s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+.loading img {
+    display: block;
+    margin: auto;
+    height: 100px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+@keyframes sunny2 {
+    from { opacity: 1; }
+    to { opacity: 0.25; }
 }

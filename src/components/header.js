@@ -1,6 +1,7 @@
 import React from 'react';
+
 import './header.css';
-import sun from '../animated-sun.gif';
+import sun from '../images/sunlogo.png';
 
 export class Header extends React.Component {
     render() {

@@ -71,7 +71,6 @@ class App extends Component {
       if (lat && long) {
         const api_call = await fetch(`${PROXY_URL}${BASE_URL}/radiation/forecasts?longitude=${long}&latitude=${lat}&api_key=${API_KEY}&format=json`);
         const data = await api_call.json();
-        console.log(data);
   
         this.setState({
           radiation: {
@@ -105,11 +104,20 @@ class App extends Component {
     const lat = e.target.elements.latitude.value;
     const long = e.target.elements.longitude.value;
     const capacity = e.target.elements.capacity.value;
+    const tilt = e.target.elements.tilt.value;
+    const azimuth = e.target.elements.azimuth.value;
 
     if (lat && long && capacity) {
-      const api_call = await fetch(`${PROXY_URL}${BASE_URL}/Pv_power/forecasts?longitude=${long}&latitude=${lat}&capacity=${capacity}&api_key=${API_KEY}&format=json`);
+      let url = `${PROXY_URL}${BASE_URL}/Pv_power/forecasts?longitude=${long}&latitude=${lat}&capacity=${capacity}&api_key=${API_KEY}&format=json`;
+      if (tilt) {
+        url = `${url}&tilt=${tilt}`;
+      }
+      if (azimuth) {
+        url = `${url}&azimuth=${azimuth}`;
+      }
+
+      const api_call = await fetch(url);
       const data = await api_call.json();
-      console.log(data);
 
       this.setState({
         pv: {
