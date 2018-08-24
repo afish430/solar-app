@@ -12,11 +12,11 @@ export class RadiationForm extends React.Component {
                         <h4 className="mb-3">Solar Radiation</h4>
                         <form id="radiation-form" className="form" onSubmit={ this.props.submitFunction }>
                             <div className="form-group">
-                                <label htmlFor="latitude">Latitude<sup className="text-danger">*</sup></label>
+                                <label htmlFor="latitude">Latitude<sup className="text-orange">*</sup></label>
                                 <input type="number" className="form-control" id="latitude" name="latitude" placeholder="e.g. 42.5"/>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="longitude">Longitude<sup className="text-danger">*</sup></label>
+                                <label htmlFor="longitude">Longitude<sup className="text-orange">*</sup></label>
                                 <input type="number" className="form-control" id="longitude" name="longitude" placeholder="e.g. -71.8"/>
                             </div>
                             <button className="btn btn-primary mr-2">Get Data</button>
@@ -34,7 +34,7 @@ export class RadiationForm extends React.Component {
                             <RadiationChart forecasts={ this.props.forecasts }/>
                         }
 
-                        { this.props.error && <p className="text-danger text-center">
+                        { this.props.error && <p className="text-orange text-center">
                             { this.props.error }
                         </p> }
                     </div>

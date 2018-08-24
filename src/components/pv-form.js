@@ -12,15 +12,15 @@ export class PvForm extends React.Component {
                     <h4 className="mb-3">Photovoltaic Power</h4>
                         <form id="pv-form" className="form" onSubmit={ this.props.submitFunction }>
                             <div className="form-group">
-                                <label htmlFor="latitude">Latitude<sup className="text-danger">*</sup></label>
+                                <label htmlFor="latitude">Latitude<sup className="text-orange">*</sup></label>
                                 <input type="number" className="form-control" id="latitude" name="latitude" placeholder="e.g. 42.5"/>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="longitude">Longitude<sup className="text-danger">*</sup></label>
+                                <label htmlFor="longitude">Longitude<sup className="text-orange">*</sup></label>
                                 <input type="number" className="form-control" id="longitude" name="longitude" placeholder="e.g. -71.8"/>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="capacity">Capacity (Watts)<sup className="text-danger">*</sup></label>
+                                <label htmlFor="capacity">Capacity (Watts)<sup className="text-orange">*</sup></label>
                                 <input type="number" className="form-control" id="capacity" name="capacity" placeholder="e.g. 1000"/>
                             </div>
                             <div className="form-group">
@@ -46,7 +46,7 @@ export class PvForm extends React.Component {
                             <PvChart forecasts={ this.props.forecasts }/>
                         }
 
-                        { this.props.error && <p className="text-danger text-center">
+                        { this.props.error && <p className="text-orange text-center">
                             { this.props.error }
                         </p> }
                     </div>

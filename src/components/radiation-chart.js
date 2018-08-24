@@ -19,7 +19,7 @@ export class RadiationChart extends React.Component {
         },
         yAxis: [{
             title: {
-                text: 'Air Temp (°C)'
+                text: 'Air Temp (°F)'
             }
         }, {
             title: {
@@ -39,9 +39,13 @@ export class RadiationChart extends React.Component {
         }]
     }
 
+    celsiusToFarenheit = temp => {
+        return temp * 1.8 + 32;
+    }
+
     render() {
         this.props.forecasts.forEach(dat => {
-            this.options.series[0].data.push({x: new Date(dat.period_end), y: dat.air_temp });
+            this.options.series[0].data.push({x: new Date(dat.period_end), y: this.celsiusToFarenheit(dat.air_temp) });
             this.options.series[1].data.push({x: new Date(dat.period_end), y: dat.ghi });
         });
     

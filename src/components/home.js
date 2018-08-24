@@ -18,13 +18,13 @@ export class Home extends React.Component {
                         </p>
                         <p className="mb-4">
                             The <NavLink to="/radiation">Radiation request</NavLink> returns detailed solar radiation data for the next week based only on your specified latitude and longitude.
-                            The data in each row are 30-minute averages up to the time shown.
+                            The data represents 30-minute averages up to the time shown.
                         </p>
                         <p>
                             The <NavLink to="/pv">PV Power request</NavLink> returns a first-guess PV output forecast (in Watts) for the next week,
                             based on your specified latitude and longitude, plus some basic PV system characteristics
                             (at a minimum, we need to know the total capacity in Watts).
-                            The data in each row are 30-minute averages up to the time shown. 
+                            The data represents 30-minute averages up to the time shown. 
                         </p>
                     </div>
                     <div className="col-6">

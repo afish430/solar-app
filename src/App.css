@@ -29,6 +29,10 @@
     color: black;
 }
 
+.text-orange {
+    color: orange;
+}
+
 .loading {
     animation-name: sunny2;
     animation-duration: 2s;
